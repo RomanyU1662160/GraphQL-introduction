@@ -8,13 +8,17 @@ const config: CodegenConfig = {
   schema: './src/Schema.graphql',
   generates: {
     'src/code-gen/types.ts': {
-      plugins: ['typescript', 'typescript-resolvers'],
+      plugins: ['typescript', 'typescript-resolvers'], // this is the plugins used to create the types
       config: {
         contextType: '../context#DataSourceContext',
+        mappers: {
+          Playlist: '../models#PlaylistModel',
+          Track: '../models#TrackModel',
+        },
       },
     },
     './src/code-gen/graphql.schema.json': {
-      plugins: ['introspection'], //this plugin will graphQL json schema in the path specified
+      plugins: ['introspection'], //this plugin will generate graphQL json schema in the path specified
     },
   },
 };

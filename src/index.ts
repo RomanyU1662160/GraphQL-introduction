@@ -18,9 +18,12 @@ async function startApolloServer() {
   const { url } = await startStandaloneServer(server, {
     context: async () => {
       const { cache } = server;
-      // this object becomes our resolver's contextValue, the third positional argument
-      const spotifyApi = new SpotifyAPI({ cache });
-      return { dataSources: spotifyApi };
+      // this returned object becomes our resolver's contextValue, the third positional argument in the resolvers
+      return {
+        dataSources: {
+          spotifyAPI: new SpotifyAPI({ cache }),
+        },
+      };
     },
   });
   console.log(`GraphQL server is running on ${url} `);
