@@ -1,0 +1,17 @@
+
+"""
+In Query we define the endpoints and parameters required 
+"""
+type Query {
+    "This will return the playlists to be featured for all users"
+featuredPlaylists: [Playlist]!
+}
+
+"""
+The Playlist Schema to define a collection of tracks for a specific activity
+"""
+type Playlist {
+    id: ID!,
+    name: String!
+    description: String!
+}
