@@ -1,6 +1,4 @@
-# (Odyssey Course) Intro to GraphQL with TypeScript
 
-Welcome to the starter code for **Intro to GraphQL with TypeScript**. You can find the [course lessons and instructions](https://apollographql.com/tutorials/intro-typescript) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
 
 ## How to use this repo
 
@@ -26,7 +24,10 @@ For any issues or problems concerning the course content, please refer to the [O
 ### Reference Documentation
 For further reference, please consider the following sections:
 
-* [Official TypeScript documentation]([https://docs.gradle.org](https://www.typescriptlang.org/docs/))
+ -  [Course lessons and instructions](https://apollographql.com/tutorials/intro-typescript) on Odyssey, [Apollo](https://apollographql.com)'s learning platform.
+
+
+ -  [Official TypeScript documentation]([https://docs.gradle.org](https://www.typescriptlang.org/docs/))
 
 
 
