@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { PlaylistModel, TrackModel } from '../models';
+import { PlaylistModel, TrackModel, AddItemsToPlayListResponseModel } from '../models';
 import { DataSourceContext } from '../context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -8,7 +8,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -174,7 +173,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   AddItemsToPlayListInput: AddItemsToPlayListInput;
-  AddItemsToPlayListResponse: ResolverTypeWrapper<Omit<AddItemsToPlayListResponse, 'playlist'> & { playlist?: Maybe<ResolversTypes['Playlist']> }>;
+  AddItemsToPlayListResponse: ResolverTypeWrapper<AddItemsToPlayListResponseModel>;
   Artist: ResolverTypeWrapper<Artist>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
@@ -189,7 +188,7 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   AddItemsToPlayListInput: AddItemsToPlayListInput;
-  AddItemsToPlayListResponse: Omit<AddItemsToPlayListResponse, 'playlist'> & { playlist?: Maybe<ResolversParentTypes['Playlist']> };
+  AddItemsToPlayListResponse: AddItemsToPlayListResponseModel;
   Artist: Artist;
   Boolean: Scalars['Boolean']['output'];
   ID: Scalars['ID']['output'];

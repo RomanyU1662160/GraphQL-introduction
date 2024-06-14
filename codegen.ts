@@ -14,6 +14,8 @@ const config: CodegenConfig = {
         mappers: {
           Playlist: '../models#PlaylistModel',
           Track: '../models#TrackModel',
+          AddItemsToPlayListResponse:
+            '../models#AddItemsToPlayListResponseModel',
         },
       },
     },

@@ -37,3 +37,10 @@ export type SnapShootOrErrorResponse = {
   snapshot_id?: string;
   error?: string;
 };
+
+export type AddItemsToPlayListResponseModel = {
+  code: number;
+  success: boolean;
+  message: string;
+  playlistId?: string;
+};

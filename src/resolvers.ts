@@ -79,16 +79,13 @@ export const resolvers: Resolvers = {
         const { input } = args;
         const response =
           await contextValue.dataSources.spotifyAPI.addItemsToPlayList(input);
-        const playlist =
-          await contextValue.dataSources.spotifyAPI.getPlaylistById(
-            input.playlistId
-          );
+
         if ('snapshot_id' in response) {
           return {
             code: 200,
             success: true,
             message: 'successfully added track to playlist',
-            playlist,
+            playlistId: response.snapshot_id,
           };
         } else {
           throw new Error('something went wrong');
@@ -102,6 +99,17 @@ export const resolvers: Resolvers = {
           playlistId: null,
         };
       }
+    },
+  },
+
+  AddItemsToPlayListResponse: {
+    playlist: async (parent, args, contextValue) => {
+      console.log('parent:::>>>', parent.playlistId);
+      const playList =
+        await contextValue.dataSources.spotifyAPI.getPlaylistById(
+          parent.playlistId
+        );
+      return playList;
     },
   },
 };
