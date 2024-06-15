@@ -1,8 +1,17 @@
 import React from 'react';
-import './App.css';
+import GlobalStyles from './styles';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import Playlists from './components/Playlists';
 
 function App() {
-  return <div className='App'></div>;
+  // const { data, error, loading } = useQuery(FEATURED_PLAYLIST_QUERY);
+
+  return (
+    <div className='App'>
+      <GlobalStyles />
+      <Playlists />
+    </div>
+  );
 }
 
 export default App;

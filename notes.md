@@ -76,7 +76,7 @@ npm install -D @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen
 
 we need to run the command below to init the code-gen file 
 ``` 
-
+npx graphql-code-generator init
 ```
 If the data returned from the Backend is in a different structure from the schema, we can create `models` to match the BE schema and them map it to the graphQL schema using the `mappers` key in the `code-gen.ts` file  
 
@@ -88,3 +88,77 @@ If the data returned from the Backend is in a different structure from the schem
 - In the codegen process, we use the `mappers` property to specify which GraphQL type a model should map to.
 - By mapping PlaylistModel to the Playlist type, our resolvers that expect to receive a Playlist object as their parent argument (such as Playlist.tracks) can access all of the properties that exist on PlaylistModel without type errors.
 - Resolvers can be defined for every field in our schema. When a resolver exists for a particular field on a type, responsibility for returning that data is automatically delegated to it.
+
+**7- install codegen on the client side:**
+-
+[steps to setup apollo on FE side](https://www.apollographql.com/tutorials/lift-off-part1/08-apollo-client-setup)
+- Create a client folder and init a react app in it.
+- we need to install a few packages in the client folder
+```
+npm i @apollo/client graphql @graphql-codegen/cli @graphql-codegen/client-preset
+```
+- Create an Apollo client and wrapp `React tree`  with the provider
+
+
+<details> 
+<summary>  click to see apollo server code on the FE side
+</summary>
+
+```
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000',
+  cache: new InMemoryCache(),
+
+  root.render(
+  <React.StrictMode>
+   + <ApolloProvider client={client}>
+      <GlobalStyles />
+      <Pages />
+    + </ApolloProvider>
+  </React.StrictMode>
+);
+});
+
+```
+</details>
+
+-
+
+- install codegen on the frontend side to generate typescript types from the graphql server
+
+```
+npm install -D @graphql-codegen/cli @graphql-codegen/client-preset
+```
+
+ - run the command below to init `codegen.ts` file
+ ```
+ npm graphql-code-generator  init
+ ```
+<details>
+<summary> click see codegen.ts example on the client side </summary> 
+
+```
+import type { CodegenConfig } from '@graphql-codegen/cli';
+
+const config: CodegenConfig = {
+  overwrite: true,
+  schema: 'http://localhost:4000',
+  documents: 'src/**/*.tsx',
+  generates: {
+    './src/__generated__/': {
+      plugins: [],
+      preset: 'client',
+      presetConfig: {
+        gqlTagName: 'gql',
+      },
+    },
+  },
+  ignoreNoDocuments: true,
+};
+
+export default config;
+
+```
+</details>
